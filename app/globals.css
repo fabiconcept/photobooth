@@ -21,3 +21,55 @@
   background: linear-gradient(to bottom, rgb(37, 37, 37), rgb(227, 225, 225));
   border-radius: 6px;
 }
+
+.btn {
+  padding: .5rem 1rem;
+  border-radius: .35rem;
+  background-color: rgba(12, 0, 135, 1);
+  width: fit-content;
+  cursor: pointer;
+  color: #fff;
+}
+
+.ball {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.ball:nth-child(2) {
+  animation: move-right 1s cubic-bezier(0.895, 0.3, 0.685, 0.5) infinite;
+  background-color: red;
+}
+
+.ball:nth-child(1) {
+  background-color: yellow;
+  animation: move-left 1s cubic-bezier(0.895, 0.3, 0.685, 0.5) infinite;
+}
+
+.mix {
+  filter: invert(1);
+}
+
+.container {
+  display: flex;
+  gap: 1rem;
+  background: #000;
+  width: fit-content;
+  margin: auto;
+  padding: 5rem;
+  mix-blend-mode: overlay;
+  filter: blur(5px) contrast(20) sepia(10);
+}
+
+@keyframes move-left {
+  50% {
+    transform: translateX(1.75rem);
+  }
+}
+
+@keyframes move-right {
+  50% {
+    transform: translateX(-1.75rem);
+  }
+}
