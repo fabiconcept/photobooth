@@ -1,5 +1,5 @@
 "use client"
-import { testApiRequest } from "@/lib/utilities";
+import { fetchImageApi, fetchImageApi_search } from "@/lib/utilities";
 import AllPhotos from "./components/AllPhotos";
 import NavBar from "./components/navBar"
 import { useEffect, useRef, useState } from "react";
@@ -12,7 +12,7 @@ export const metadata = {
 }
 
 export async function getServerSideProps() {
-  const data = await testApiRequest();
+  const data = await fetchImageApi();
   return {
     props: {
       data,
@@ -54,16 +54,20 @@ export default function Home() {
   }, []);
 
   const fetchHandler = async () => {
-    const fetchPhotosHandler = await testApiRequest(currentPage);
-    setPhotosArray([...photosArray, ...fetchPhotosHandler]);
+    const photosResults = await fetchImageApi(currentPage);
+    setPhotosArray([...photosArray, ...photosResults]);
     setCurrentPage(currentPage + 1);
   }
 
-
+  const searchHandler = async (query) => {
+    setPhotosArray([]);
+    const photosResult = await fetchImageApi_search(query);
+    setPhotosArray([...photosResult]);
+  }
 
   return (
     <main className="w-screen h-screen overflow-auto" ref={divRef}>
-      <NavBar />
+      <NavBar onSearchHandler={searchHandler} />
       <div className="">
         <AllPhotos photoGrid={photosArray} />
       </div>
