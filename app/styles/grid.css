@@ -1,0 +1,7 @@
+/* .group-item:has(.item:hover) .item:not(:hover) {
+    filter: grayscale(100%);
+} */
+
+.group-item:has(.item:hover) .item:hover {
+    filter: grayscale(100%);
+}
