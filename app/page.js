@@ -28,6 +28,7 @@ export default function Home() {
 
   useEffect(() => {
     const divElement = divRef.current;
+    
 
     const handleScroll = () => {
       const scrollHeight = divElement.scrollHeight;
@@ -36,7 +37,7 @@ export default function Home() {
 
       const distanceToRight = scrollHeight - clientHeight - scrollTop;
 
-      const threshold = 500;
+      const threshold = 700;
 
       if (distanceToRight <= threshold) {
         btnRef.current.click();
