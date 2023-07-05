@@ -1,9 +1,24 @@
+"use client"
 import Image from "next/image";
+import { useContext } from "react";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { MyContext } from "../page";
 
-export default function GridItem({imgSrc, imgAlt, imgInfo, avg, photographer}) {
+export default function GridItem({imgSrc, imgAlt, avg, photographer, photographer_url}) {
+    const { viewPop } = useContext(MyContext);
+
+    function viewHandler() {
+        const dataObject = {
+            src: imgSrc,
+            alt: imgAlt,
+            avg_color: avg,
+            photographer,
+            photographerLink: photographer_url,
+        }
+        viewPop(dataObject);
+    }
     return (
-        <div className={`h-fit w-full relative overflow-hidden cursor-pointer group active:opacity-85 active:translate-y-3 active:scale-95 hover:scale-[1.025] hover:z-10 hover:shadow-lg hover:rounded-md item`} style={{background: `${avg}`}}>
+        <div className={`h-fit w-full relative overflow-hidden cursor-pointer group active:opacity-85 active:translate-y-3 active:scale-95 hover:scale-[1.025] hover:z-10 hover:shadow-lg hover:rounded-md item`} style={{background: `${avg}`}} onClick={viewHandler}>
             <Image 
                 width={600}
                 height={800}

@@ -20,9 +20,9 @@ export default function AllPhotos({photoGrid}) {
                 className="my-masonry-grid group-item"
                 columnClassName="my-masonry-grid_column"
             >
-                {photoGrid?.map(({ alt, id, photographer, src, avg_color }) => (
+                {photoGrid?.map(({ alt, id, photographer, src, avg_color, photographer_url }) => (
 
-                    <GridItem imgSrc={src.original} photographer={photographer} imgAlt={alt} avg={avg_color} key={id} />
+                    <GridItem imgSrc={src.original} photographer={photographer} imgAlt={alt} avg={avg_color} key={id} photographer_url={photographer_url} />
                 ))}
             </Masonry>
         </div>
