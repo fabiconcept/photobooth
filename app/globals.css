@@ -4,6 +4,7 @@
 
 * {
   transition: .15s ease-in-out;
+  scroll-behavior: smooth;
 }
 
 * img {
