@@ -6,6 +6,12 @@
   transition: .15s ease-in-out;
 }
 
+* img {
+  pointer-events: none;
+  user-select: none;
+  user-zoom: none;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
