@@ -5,20 +5,13 @@ import NavBar from "./components/navBar"
 import React, { useEffect, useRef, useState } from "react";
 import LoadindDiv from "./elements/LoadindDiv";
 import PopModal from "./components/PopModal";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
-export const metadata = {
-  title: "PhotoBooth",
-  description: "This is a photobooth app",
-}
-
-export async function getServerSideProps() {
-  const data = await fetchImageApi();
+export const generateMetadata = () => {
   return {
-    props: {
-      data,
-    },
-  };
+    title: "PhotoBooth",
+      description: "This is a photobooth app",
+  }
 }
 
 
@@ -28,6 +21,9 @@ export const MyContext = React.createContext();
 export default function Home() {
   const [photosArray, setPhotosArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false); 
+
   const divRef = useRef(null);
   const btnRef = useRef();
   const [popData, setPopData] = useState({
@@ -37,7 +33,7 @@ export default function Home() {
     photographerLink: "",
     avg_color: "",
     status: false
-  })
+  });
 
   useEffect(() => {
     const divElement = divRef.current;
@@ -67,40 +63,42 @@ export default function Home() {
   }, []);
 
   const fetchHandler = async () => {
-    const preLoad = fetchImageApi;
-    const photosResults = await preLoad(currentPage);
-    setPhotosArray([...photosArray, ...photosResults]);
-    setCurrentPage(currentPage + 1);
-  }
-
-  const searchHandler = async (query) => {
-    setPhotosArray([]);
-    const photosResult = await fetchImageApi_search(query);
-    setPhotosArray([...photosResult]);
+    setIsLoading(true)
+    try {
+      const preLoad = fetchImageApi;
+      const photosResults = await preLoad(currentPage);
+      setPhotosArray([...photosArray, ...photosResults]);
+      setCurrentPage(currentPage + 1);
+      setIsLoading(false)
+    } catch (error) {
+      setIsLoading(false)
+      setHasError(true);
+    }
   }
 
   const viewPop = (data) => {
-    const  { src, alt, photographer, photographerLink, avg_color } = data;
-    setPopData({...popData, 
-        imgSrc: src,
-        imgAlt: alt,
-        photographer,
-        photographerLink,
-        avg_color,
-        status: true
-      });
+    const { src, alt, photographer, photographerLink, avg_color } = data;
+    setPopData({
+      ...popData,
+      imgSrc: src,
+      imgAlt: alt,
+      photographer,
+      photographerLink,
+      avg_color,
+      status: true
+    });
   }
 
   return (
-    <MyContext.Provider value={{viewPop}}>
+    <MyContext.Provider value={{ viewPop }}>
       <main className="w-screen h-screen overflow-auto" ref={divRef}>
         <Toaster />
-        <NavBar onSearchHandler={searchHandler} />
+        <NavBar />
         <div className="">
-          <AllPhotos photoGrid={photosArray} />
+          <AllPhotos photoGrid={photosArray} contextObj={MyContext} />
         </div>
-        <LoadindDiv />
-        <div className="btn hidden" ref={btnRef} onClick={() => fetchHandler()}>Load Images</div>
+        {isLoading && <LoadindDiv />}
+        <div className="btn hidden" ref={btnRef} onClick={() => fetchHandler()}></div>
         <PopModal
           avg={popData.avg_color}
           imgAlt={popData.imgAlt}
@@ -109,7 +107,7 @@ export default function Home() {
           photographerUrl={popData.photographerLink}
           status={popData.status}
           key={popData.avg_color}
-          clean= {setPopData}
+          clean={setPopData}
         />
       </main>
     </MyContext.Provider>

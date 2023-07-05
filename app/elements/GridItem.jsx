@@ -2,10 +2,9 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-import { MyContext } from "../page";
 
-export default function GridItem({imgSrc, imgAlt, avg, photographer, photographer_url}) {
-    const { viewPop } = useContext(MyContext);
+export default function GridItem({imgSrc, imgAlt, avg, photographer, photographer_url, contextObj}) {
+    const { viewPop } = useContext(contextObj);
 
     function viewHandler() {
         const dataObject = {

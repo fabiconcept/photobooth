@@ -69,6 +69,7 @@
     border-radius: .5rem;
     overflow: hidden;
     transform: scale(1.015);
+    user-select: none;
 }
 
 .popModal .modal .img span:not(.close) {
