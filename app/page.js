@@ -67,7 +67,8 @@ export default function Home() {
   }, []);
 
   const fetchHandler = async () => {
-    const photosResults = await fetchImageApi(currentPage);
+    const preLoad = fetchImageApi;
+    const photosResults = await preLoad(currentPage);
     setPhotosArray([...photosArray, ...photosResults]);
     setCurrentPage(currentPage + 1);
   }
@@ -108,6 +109,7 @@ export default function Home() {
           photographerUrl={popData.photographerLink}
           status={popData.status}
           key={popData.avg_color}
+          clean= {setPopData}
         />
       </main>
     </MyContext.Provider>
