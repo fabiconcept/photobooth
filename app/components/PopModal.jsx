@@ -43,15 +43,15 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
                     <Image height={800} width={600} src={imgSrc} alt={imgAlt} className="peer-hover:filter peer-hover:grayscale" />
                 </div>
                 <section className="w-full p-5 rounded-b-lg bg-white flex-1 flex justify-between items-center flex-wrap gap-4">
-                    <span className="min-w-[10rem] flex gap-4 items-center text-red-500 cursor-pointer hover:scale-105 active:scale-95" onClick={downloadHandler}>
+                    <span className="min-w-[10rem] flex-1 justify-center flex gap-4 items-center text-red-500 cursor-pointer hover:scale-105 active:scale-95" onClick={downloadHandler}>
                         <FaDownload className="text-lg font-light"/>
                         Download
                     </span>
-                    <Link href={photographerUrl} target="_blank" className="min-w-[10rem] flex gap-4 items-center cursor-pointer hover:scale-105 active:scale-95">
+                    <Link href={photographerUrl} target="_blank" className="min-w-[10rem] flex-1 justify-center flex gap-4 items-center cursor-pointer hover:scale-105 active:scale-95">
                         <FaUserAstronaut className="text-lg font-light" />
                         {photographer}
                     </Link>
-                    <span className="min-w-[10rem] flex gap-4 items-center cursor-grab hover:scale-105 active:scale-95" onClick={()=>copyToClipboard(avg)}>
+                    <span className="min-w-[10rem] flex-1 justify-center flex gap-4 items-center cursor-grab hover:scale-105 active:scale-95" onClick={()=>copyToClipboard(avg)}>
                         <FaEyeDropper className="text-lg font-light" />
                         <div className={`color text-xs flex items-center justify-center`} style={{background: `${avg}`}}></div>
                     </span>
