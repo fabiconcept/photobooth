@@ -53,11 +53,11 @@ export default function Home() {
       }
     };
 
-    divElement.addEventListener('scroll', handleScroll);
+    divElement.addEventListener("scroll", handleScroll);
 
     btnRef.current.click();
     return () => {
-      divElement.removeEventListener('scroll', handleScroll);
+      divElement.removeEventListener("scroll", handleScroll);
     };
 
   }, []);
@@ -98,6 +98,9 @@ export default function Home() {
           <AllPhotos photoGrid={photosArray} contextObj={MyContext} />
         </div>
         {isLoading && <LoadindDiv />}
+        {!isLoading && !hasError && photosArray.length > 0 && <div className="p-3 mx-auto justify-center text-center">You&apos;ve reached the end</div>}
+        {hasError && photosArray.length === 0 && <div className="p-3 mx-auto justify-center text-center">Oops! an error occured, refresh page</div>}
+        {hasError && photosArray.length > 0 && <div className="p-3 mx-auto justify-center text-center">Oops! an error occured, can&apos;t fetch more Photos</div>}
         <div className="btn hidden" ref={btnRef} onClick={() => fetchHandler()}></div>
         <PopModal
           avg={popData.avg_color}

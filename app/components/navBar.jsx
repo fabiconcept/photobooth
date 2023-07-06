@@ -18,7 +18,7 @@ export default function NavBar() {
 
         if (ctrlKey && code === "KeyK") {
             e.preventDefault();
-            searchBox.current.focus();
+            searchBox.current?.focus();
             return
         }
     }

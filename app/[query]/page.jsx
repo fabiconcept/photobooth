@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import AllPhotos from "../components/AllPhotos";
 import LoadindDiv from "../elements/LoadindDiv";
+import NoImage from "../elements/NoImage";
 
 
 export const generateMetadata = ({ params: { query } }) => {
@@ -19,7 +20,7 @@ export const searchContext = React.createContext();
 
 export default function SearchResultsPage({ params: { query } }) {
     const [photosArray, setPhotosArray] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
     const [popData, setPopData] = useState({
         imgSrc: "",
@@ -37,7 +38,7 @@ export default function SearchResultsPage({ params: { query } }) {
             const preLoad = fetchImageApi_search;
             const photosResult = await preLoad(query);
             setPhotosArray([...photosResult]);
-            toast.success(`We found: ${photosResult.length}`, {
+            toast.success(`Search Results: ${photosResult.length}`, {
                 style: {
                   border: '1px solid #713200',
                   padding: '16px',
@@ -81,6 +82,7 @@ export default function SearchResultsPage({ params: { query } }) {
                  />
                 {!hasError && <AllPhotos photoGrid={photosArray} contextObj={searchContext} />}
                 {isLoading && <LoadindDiv />}
+                {!isLoading && !hasError && photosArray.length === 0 && <NoImage />}
                 {!isLoading && !hasError && photosArray.length > 0 && <div className="p-3 mx-auto justify-center text-center">You've reached the end</div>}
                 {hasError && <div className="p-3 mx-auto justify-center text-center">Oops! an error occured, refresh page</div> }
                 <PopModal
