@@ -46,7 +46,7 @@ export default function NavBar() {
             <Link href={"/"} className="font-bold text-lg uppercase cursor-pointer" >Photobooth</Link>
             <div className="rounded-lg focus-within:border-black focus-within:border-2 overflow-hidden px-3 py-2">
                 <form onSubmit={handleSubmit}>
-                <input type="search" ref={searchBox} value={searchText} onChange={(e)=>setSearchText(e.target.value)} className="border-none outline-none bg-transparent placeholder-shown:w-20 focus:w-40 w-40" placeholder={`${placeholder}`} onFocus={()=>setPlaceholder("Find item...")} onBlur={()=>setPlaceholder("CTRL + K")} />
+                <input type="search" ref={searchBox} value={searchText} onChange={(e)=>setSearchText(e.target.value)} className="border-none outline-none bg-transparent placeholder-shown:w-[5.5rem] focus:w-40 w-40" placeholder={`${placeholder}`} onFocus={()=>setPlaceholder("Find item...")} onBlur={()=>setPlaceholder("CTRL + K")} />
                 </form>
             </div>
         </section>

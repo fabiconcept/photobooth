@@ -80,7 +80,9 @@ export default function SearchResultsPage({ params: { query } }) {
                     position="bottom-right"
                     reverseOrder={false}
                  />
-                {!hasError && <AllPhotos photoGrid={photosArray} contextObj={searchContext} />}
+                {!hasError && <div className="p-1">
+                    <AllPhotos photoGrid={photosArray} contextObj={searchContext} />
+                </div>}
                 {isLoading && <LoadindDiv />}
                 {!isLoading && !hasError && photosArray.length === 0 && <NoImage />}
                 {!isLoading && !hasError && photosArray.length > 0 && <div className="p-3 mx-auto justify-center text-center">You've reached the end</div>}
