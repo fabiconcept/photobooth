@@ -85,7 +85,7 @@ export default function SearchResultsPage({ params: { query } }) {
                 </div>}
                 {isLoading && <LoadindDiv />}
                 {!isLoading && !hasError && photosArray.length === 0 && <NoImage />}
-                {!isLoading && !hasError && photosArray.length > 0 && <div className="p-3 mx-auto justify-center text-center">You've reached the end</div>}
+                {!isLoading && !hasError && photosArray.length > 0 && <div className="p-3 mx-auto justify-center text-center">You&apos;ve reached the end</div>}
                 {hasError && <div className="p-3 mx-auto justify-center text-center">Oops! an error occured, refresh page</div> }
                 <PopModal
                     avg={popData.avg_color}
