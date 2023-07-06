@@ -94,7 +94,7 @@ export default function Home() {
       <main className="w-screen h-screen overflow-auto" ref={divRef}>
         <Toaster />
         <NavBar />
-        <div className="">
+        <div className="p-1">
           <AllPhotos photoGrid={photosArray} contextObj={MyContext} />
         </div>
         {isLoading && <LoadindDiv />}
