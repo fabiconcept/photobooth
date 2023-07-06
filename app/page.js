@@ -7,17 +7,7 @@ import LoadindDiv from "./elements/LoadindDiv";
 import PopModal from "./components/PopModal";
 import { Toaster, toast } from "react-hot-toast";
 
-export const generateMetadata = () => {
-  return {
-    title: "PhotoBooth",
-      description: "This is a photobooth app",
-  }
-}
-
-
 export const MyContext = React.createContext();
-
-
 export default function Home() {
   const [photosArray, setPhotosArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

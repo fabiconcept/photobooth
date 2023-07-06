@@ -8,16 +8,7 @@ import AllPhotos from "../components/AllPhotos";
 import LoadindDiv from "../elements/LoadindDiv";
 import NoImage from "../elements/NoImage";
 
-
-export const generateMetadata = ({ params: { query } }) => {
-    return {
-        title: `PhotoBooth | ${query}`,
-        description: "This is a photobooth app",
-    }
-}
-
 export const searchContext = React.createContext();
-
 export default function SearchResultsPage({ params: { query } }) {
     const [photosArray, setPhotosArray] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
