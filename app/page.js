@@ -5,7 +5,7 @@ import NavBar from "./components/navBar"
 import React, { useEffect, useRef, useState } from "react";
 import LoadindDiv from "./elements/LoadindDiv";
 import PopModal from "./components/PopModal";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 export const MyContext = React.createContext();
 export default function Home() {
@@ -57,12 +57,13 @@ export default function Home() {
     try {
       const preLoad = fetchImageApi;
       const photosResults = await preLoad(currentPage);
+
       setPhotosArray([...photosArray, ...photosResults]);
       setCurrentPage(currentPage + 1);
-      setIsLoading(false)
     } catch (error) {
-      setIsLoading(false)
       setHasError(true);
+    }finally{
+      setIsLoading(false);
     }
   }
 
