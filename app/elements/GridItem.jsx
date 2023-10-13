@@ -33,7 +33,7 @@ export default function GridItem({imgSrc, imgAlt, avg, photographer, photographe
                     </div>
                 </div>
             </div>
-            <span className="absolute group-hover:top-4 group-hover:right-4 top-3 right-3 mix-blend-screen px-2 lowercase py-1 bg-white text-sm rounded-md font-bold z-30 max-w-[20rem] text-ellipsis whitespace-nowrap overflow-hidden">@{photographer}</span>
+            <span className="absolute group-hover:top-4 group-hover:right-4 top-3 right-3 mix-blend-screen px-2 lowercase py-1 bg-white sm:text-sm text-xs rounded-md font-bold z-30 max-w-[20rem] text-ellipsis whitespace-nowrap overflow-hidden">@{photographer}</span>
             {imgAlt && <span className="absolute group-hover:bottom-8 group-hover:opacity-100 opacity-0 bottom-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 mix-blend-screen px-2 py-1 text-xs text-white font-semibold z-30 max-w-[15rem] text-ellipsis whitespace-nowrap overflow-hidden">{imgAlt}</span>}
         </div>
     )
