@@ -60,6 +60,8 @@ export default function Home() {
 
       setPhotosArray([...photosArray, ...photosResults]);
       setCurrentPage(currentPage + 1);
+      setHasError(false);
+
     } catch (error) {
       setHasError(true);
     }finally{
