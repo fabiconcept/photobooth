@@ -40,10 +40,10 @@ export default function SearchResultsPage({ params: { query } }) {
                   secondary: '#FFFAEE',
                 },
               });
-            setIsLoading(false)
         } catch (error) {
-            setIsLoading(false);
             setHasError(true);
+        }finally{
+            setIsLoading(false);
         }
     }
 
