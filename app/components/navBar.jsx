@@ -7,7 +7,7 @@ export default function NavBar() {
     const searchBox = useRef();
     const pathName = usePathname();
     const [placeholder, setPlaceholder] = useState("CTRL + K");
-    const [searchText, setSearchText] = useState(pathName ? `${pathName.slice(1)}` : "");
+    const [searchText, setSearchText] = useState(pathName ? `${pathName.slice(1).replace(/%20/g, ' ')}` : "");
     const router = useRouter();
 
     const onSearchHandler = (path) => {
