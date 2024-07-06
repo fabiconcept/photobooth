@@ -14,10 +14,10 @@ const breakpointColumnsObj = {
 export default function AllPhotos({photoGrid, contextObj}) {
 
     return (
-        <div className="w-full overflow-x-hidden mx-auto">
+        <div className="w-fit overflow-x-hidden md:mx-4 sm:mx-2 mx-1 pt-3">
             <Masonry
                 breakpointCols={breakpointColumnsObj}
-                className="my-masonry-grid group-item"
+                className="my-masonry-grid group-item gap-x-4 gap-y-4"
                 columnClassName="my-masonry-grid_column"
             >
                 {photoGrid?.map(({ alt, id, photographer, src, avg_color, photographer_url }) => (

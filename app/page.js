@@ -12,7 +12,7 @@ export default function Home() {
   const [photosArray, setPhotosArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(false); 
+  const [hasError, setHasError] = useState(false);
 
   const divRef = useRef(null);
   const btnRef = useRef();
@@ -58,13 +58,15 @@ export default function Home() {
       const preLoad = fetchImageApi;
       const photosResults = await preLoad(currentPage);
 
+      console.log(photosResults[0]);
+
       setPhotosArray([...photosArray, ...photosResults]);
       setCurrentPage(currentPage + 1);
       setHasError(false);
 
     } catch (error) {
       setHasError(true);
-    }finally{
+    } finally {
       setIsLoading(false);
     }
   }
