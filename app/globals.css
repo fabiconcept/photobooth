@@ -80,3 +80,9 @@
     transform: translateX(-1.75rem);
   }
 }
+
+@media screen and (max-width: 750px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }  
+}

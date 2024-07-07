@@ -131,3 +131,25 @@
         transform: translateY(0);
     }
 }
+
+@media screen and (max-width: 750px) {
+    .popModal .modal {
+        width: 99vw;
+    }    
+    .popModal {
+        place-items: end center;
+    }    
+    .popModal.in {
+        z-index: 201;
+    }    
+    .popModal .modal .img {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        max-height: 65vh;
+        border-top: 2px solid;
+        box-shadow: 0 -10px 10px rgb(0, 0, 0, 0.15);
+    }    
+    .popModal .modal .img img {
+        max-width: 100vw;
+    }    
+}
