@@ -51,9 +51,9 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
                         <FaDownload className="text-lg font-light"/>
                         <span className="max-sm:hidden">Download</span>
                     </span>
-                    <Link href={photographerUrl} target="_blank" className="min-w-[10rem] flex-1 justify-center flex gap-4 items-center cursor-pointer hover:scale-105 active:scale-95">
+                    <Link href={photographerUrl} target="_blank" className="min-w-[10rem] flex-1 justify-center flex gap-2 items-center cursor-pointer hover:scale-105 active:scale-95">
                         <FaUserAstronaut className="text-lg font-light" />
-                        <span className="whitespace-nowrap">{photographer}</span> 
+                        <span className="whitespace-nowrap max-sm text-sm">{photographer}</span> 
                     </Link>
                     <span className="sm:min-w-[10rem] min-w-[1rem] flex-1 justify-center flex gap-4 items-center cursor-grab hover:scale-105 active:scale-95" onClick={()=>copyToClipboard(avg)}>
                         <FaEyeDropper className="text-lg font-light" />
