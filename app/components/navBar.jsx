@@ -43,16 +43,16 @@ export default function NavBar() {
     }, []);
 
     return (
-        <section className="w-full py-4 sm:px-12 px-5 flex bg-white justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky focus-within:top-0 focus-within:z-[200] items-center">
+        <section className="w-full py-4 sm:px-12 px-5 flex bg-white justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center">
             <Link href={"/"} className="font-bold text-lg uppercase cursor-pointer flex items-center gap-1" >
                 <Image
                     src={"/sly.svg"}
                     alt="Dead Head Ico"
                     height={25}
                     width={25}
-                    className=""
+                    className={`${placeholder !=="CTRL + K" ? "max-sm:w-8": ""}`}
                 />
-                <span className="font-bold">Photobooth</span>
+                <span className={`font-bold ${placeholder !=="CTRL + K" ? "max-sm:hidden": ""}`}>Photobooth</span>
             </Link>
             <div className="rounded-lg focus-within:border-black border-2 border-transparent overflow-hidden px-3 py-2 capitalize">
                 <form onSubmit={handleSubmit}>
