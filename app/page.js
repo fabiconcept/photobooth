@@ -58,8 +58,6 @@ export default function Home() {
       const preLoad = fetchImageApi;
       const photosResults = await preLoad(currentPage);
 
-      console.log(photosResults[0]);
-
       setPhotosArray([...photosArray, ...photosResults]);
       setCurrentPage(currentPage + 1);
       setHasError(false);
