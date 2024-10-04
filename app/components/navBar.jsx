@@ -54,7 +54,7 @@ export default function NavBar() {
                 />
                 <span className={`font-bold ${searchText || placeholder !=="CTRL + K" ? "max-sm:hidden": ""}`}>Photobooth</span>
             </Link>
-            <div className={`rounded-lg ${searchText || placeholder !=="CTRL + K" ? "border-black": "focus-within:border-black"} border-2 border-transparent overflow-hidden px-3 py-2 capitalize`}>
+            <div className={`rounded-lg ${searchText || placeholder !=="CTRL + K" ? "border-black dark:border-white": "focus-within:border-black focus-within:dark:border-white"} border-2 border-transparent overflow-hidden px-3 py-2 capitalize`}>
                 <form onSubmit={handleSubmit}>
                     <input 
                         type="search" 
