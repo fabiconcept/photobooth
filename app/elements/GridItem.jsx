@@ -31,7 +31,7 @@ export default function GridItem({ imgSrc, imgAlt, avg, photographer, photograph
                 <div className="absolute h-full w-full z-20 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 top-0 group-hover:backdrop-blur-[2px] left-0">
                     <div className="absolute top-full left-full group-hover:top-1/2 group-hover:left-1/2 -translate-y-1/2 -translate-x-1/2 group-hover:opacity-100 opacity-0 delay-100 grid place-items-center">
                         <div className="flew gap-4">
-                            <div className="text-white dark:text-[#161618] flex items-center gap-2 text-3xl"><FaArrowUpRightFromSquare /></div>
+                            <div className="text-white flex items-center gap-2 text-3xl"><FaArrowUpRightFromSquare /></div>
                         </div>
                     </div>
                 </div>
