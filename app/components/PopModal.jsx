@@ -43,10 +43,10 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
                     </span>
                     {imgSrc && <Image height={800} width={600} src={imgSrc} alt={imgAlt} className="" priority />}
                 </div>
-                {imgAlt && <section className="p-5 bg-slate-100 text-center border-b border-b-black/10">
-                    <span className="text-black px-4 sm:text-base text-sm rounded-md text-ellipsis text-center">{imgAlt}</span>
+                {imgAlt && <section className="p-5 bg-slate-100 dark:bg-[#1f1f22] text-center border-b border-b-black/10">
+                    <span className="text-black px-4 sm:text-base text-sm rounded-md dark:text-white text-ellipsis text-center">{imgAlt}</span>
                 </section>}
-                <section className="w-full p-5 max-sm:px-2 rounded-b-lg bg-white flex-1 flex justify-between items-center flex-wrap gap-4 text-black">
+                <section className="w-full p-5 max-sm:px-2 rounded-b-lg bg-white dark:bg-[#161618] dark:text-white flex-1 flex justify-between items-center flex-wrap gap-4 text-black">
                     <span className="sm:min-w-[10rem] min-w-[1rem] flex-1 justify-center flex gap-4 items-center text-red-500 cursor-pointer hover:scale-105 active:scale-95" onClick={downloadHandler}>
                         <FaDownload className="text-lg font-light"/>
                         <span className="max-sm:hidden">Download</span>
