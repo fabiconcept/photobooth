@@ -17,9 +17,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 15, 15, 15;
-    --background-end-rgb: 15, 15, 15;
-    --background-rgb-fade: 15, 15, 15, 0.75;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --background-rgb-fade: 0, 0, 0, 0.75;
   }
 }
 
@@ -80,9 +80,6 @@ body {
   animation: move-left 1s cubic-bezier(0.895, 0.3, 0.685, 0.5) infinite;
 }
 
-.mix {
-  filter: invert(1);
-}
 
 .container {
   display: flex;
@@ -91,8 +88,27 @@ body {
   width: fit-content;
   margin: auto;
   padding: 5rem;
-  mix-blend-mode: overlay;
   filter: blur(5px) contrast(20) sepia(10);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .ball:nth-child(2) {
+    background-color: #ef1616; /* Darker red */
+  }
+
+  .ball:nth-child(1) {
+    background-color: #ecc424; /* Darker yellow */
+  }
+
+  .mix {
+    filter: invert(0);
+  }
+
+  .container {
+    background-color: #000;
+    filter: blur(5px) contrast(15) sepia(8); /* Slightly adjusted filters */
+  }
 }
 
 @keyframes move-left {
