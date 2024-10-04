@@ -43,14 +43,14 @@ export default function NavBar() {
     }, []);
 
     return (
-        <section className="w-full py-4 sm:px-12 px-5 flex bg-white justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center">
+        <section className="w-full py-4 sm:px-12 px-5 flex bg-white dark:bg-[#161618] justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center">
             <Link href={"/"} className="font-bold text-lg uppercase cursor-pointer flex items-center gap-1" >
                 <Image
                     src={"/sly.svg"}
                     alt="Dead Head Ico"
                     height={25}
                     width={25}
-                    className={`${searchText || placeholder !=="CTRL + K" ? "max-sm:w-8": ""}`}
+                    className={`dark:brightness-0 dark:invert ${searchText || placeholder !=="CTRL + K" ? "max-sm:w-8": ""}`}
                 />
                 <span className={`font-bold ${searchText || placeholder !=="CTRL + K" ? "max-sm:hidden": ""}`}>Photobooth</span>
             </Link>
