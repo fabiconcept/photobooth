@@ -13,12 +13,12 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
         const imageUrl = imgSrc;
         const linkElement = document.createElement("a");
         linkElement.href = imageUrl;
-        linkElement.setAttribute("download", `${imgAlt} | PhotoBooth.jpeg`);
+        linkElement.setAttribute("download", `${imgAlt.replace(/\W/g, '_')}_PhotoBooth.jpeg`);
         linkElement.target = "_blank";
         document.body.appendChild(linkElement);
         linkElement.click();
         document.body.removeChild(linkElement);
-    };
+    };      
     
 
     useEffect(()=>{
