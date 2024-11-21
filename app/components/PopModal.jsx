@@ -9,10 +9,18 @@ import { copyToClipboard } from "../lib/utils";
 export default function PopModal({imgSrc, imgAlt, photographer, avg, photographerUrl, status, clean}) {
     const [modalShowing, setModalShowing] = useState(status);
 
-    const downloadHandler = () => {
+    const downloadHandler = async() => {
         const imageUrl = imgSrc;
+
+        const imageRes = await fetch(imageUrl);
+
+        if(!imageRes.ok) return;
+
+        const imageBlob = await imageRes.blob();
+        const imageOutputUrl = URL.createObjectURL(imageBlob);
+
         const linkElement = document.createElement("a");
-        linkElement.href = imageUrl;
+        linkElement.href = imageOutputUrl;
         linkElement.setAttribute("download", `${imgAlt.replace(/\W/g, '_')}_PhotoBooth.jpeg`);
         linkElement.target = "_blank";
         document.body.appendChild(linkElement);
