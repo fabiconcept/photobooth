@@ -1,33 +1,15 @@
 "use client"
-import { FaCircleHalfStroke, FaDownload, FaEyeDropper, FaUserAstronaut, FaX } from "react-icons/fa6";
+import { FaDownload, FaEyeDropper, FaUserAstronaut, FaX } from "react-icons/fa6";
 import "../styles/popModal.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { copyToClipboard } from "../lib/utils";
+import { downloadHandler } from "@/lib/utilities";
+import toast from "react-hot-toast";
 
 export default function PopModal({imgSrc, imgAlt, photographer, avg, photographerUrl, status, clean}) {
     const [modalShowing, setModalShowing] = useState(status);
-
-    const downloadHandler = async() => {
-        const imageUrl = imgSrc;
-
-        const imageRes = await fetch(imageUrl);
-
-        if(!imageRes.ok) return;
-
-        const imageBlob = await imageRes.blob();
-        const imageOutputUrl = URL.createObjectURL(imageBlob);
-
-        const linkElement = document.createElement("a");
-        linkElement.href = imageOutputUrl;
-        linkElement.setAttribute("download", `${imgAlt.replace(/\W/g, '_')}_PhotoBooth.jpeg`);
-        linkElement.target = "_blank";
-        document.body.appendChild(linkElement);
-        linkElement.click();
-        document.body.removeChild(linkElement);
-    };      
-    
 
     useEffect(()=>{
         if(!modalShowing) {
@@ -42,6 +24,15 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
         }
     }, [modalShowing]);
 
+    const performDownload = () => {
+        const promise = downloadHandler({imgAlt, imgSrc});
+        toast.promise(promise, {
+            loading: "Downloading Image...",
+            error: "Failed to download image.",
+            success: "Image downloaded successfully."
+        });
+    }
+
     return (
         <div className={`popModal sm:p-[5rem] ${modalShowing ? "in" : "out"}`}>
             <div className="modal">
@@ -55,7 +46,7 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
                     <span className="text-black px-4 sm:text-base text-sm rounded-md dark:text-white text-ellipsis text-center">{imgAlt}</span>
                 </section>}
                 <section className="w-full p-5 max-sm:px-2 rounded-b-lg bg-white dark:bg-[#161618] dark:text-white flex-1 flex justify-between items-center flex-wrap gap-4 text-black">
-                    <span className="sm:min-w-[10rem] min-w-[1rem] flex-1 justify-center flex gap-4 items-center text-red-500 cursor-pointer hover:scale-105 active:scale-95" onClick={downloadHandler}>
+                    <span className="sm:min-w-[10rem] min-w-[1rem] flex-1 justify-center flex gap-4 items-center text-red-500 cursor-pointer hover:scale-105 active:scale-95" onClick={performDownload}>
                         <FaDownload className="text-lg font-light"/>
                         <span className="max-sm:hidden">Download</span>
                     </span>
