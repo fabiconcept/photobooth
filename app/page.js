@@ -107,7 +107,7 @@ export default function Home() {
           clean={setPopData}
         />
 
-      <div class="fixed sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group">
+      <div class="fixed sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group z-[90]">
         Made by <Link href={"https://fabiconcept.online"} className="text-xl group-hover:text-blue-500 font-semibold" target="_blank">@Fabiconcept</Link>
       </div>
       </main>
