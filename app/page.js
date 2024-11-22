@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import LoadindDiv from "./elements/LoadindDiv";
 import PopModal from "./components/PopModal";
 import { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 export const MyContext = React.createContext();
 export default function Home() {
@@ -84,7 +85,7 @@ export default function Home() {
 
   return (
     <MyContext.Provider value={{ viewPop }}>
-      <main className="w-screen h-screen overflow-auto" ref={divRef}>
+      <main className="w-screen h-screen overflow-auto relative" ref={divRef}>
         <Toaster />
         <NavBar />
         <div className="p-1 md:px-4 sm:px-2 px-1 ">
@@ -105,6 +106,10 @@ export default function Home() {
           key={popData.avg_color}
           clean={setPopData}
         />
+
+      <div class="fixed sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group">
+        Made by <Link href={"https://fabiconcept.online"} className="text-xl group-hover:text-blue-500 font-semibold" target="_blank">@Fabiconcept</Link>
+      </div>
       </main>
     </MyContext.Provider>
   )
