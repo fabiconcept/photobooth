@@ -26,6 +26,24 @@
                 searchBox.current?.focus();
                 return
             }
+            
+            if (ctrlKey && code === "KeyS") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
+            
+            if (ctrlKey && code === "KeyL") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
+            
+            if (ctrlKey && code === "KeyF") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
         }
 
         const handleSubmit = (e) => {
@@ -74,7 +92,7 @@
                             className="border-none outline-none bg-transparent placeholder-shown:w-[5.5rem] focus:w-56 w-40 capitalize"
                             placeholder={`${placeholder}`}
                             onFocus={() => setPlaceholder("Find item...")}
-                            onBlur={() => setPlaceholder("CTRL + K")}
+                            onBlur={() => setPlaceholder("CTRL + (K/S/F/L)")}
                         />
                     </form>
                 </div>
