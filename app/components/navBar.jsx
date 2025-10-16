@@ -11,6 +11,22 @@
         const [searchText, setSearchText] = useState(pathName ? `${pathName.slice(1).replace(/%20/g, ' ')}` : "");
         const router = useRouter();
         const [loading, startTransition] = useTransition();
+        const [scrolled, setScrolled] = React.useState(false);
+
+        React.useEffect(() => {
+            const handleScroll = () => {
+                const fullHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+                if (scrollPosition > (fullHeight * 0.05)) {
+                    setScrolled(true);
+                } else {
+                    setScrolled(false);
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
 
         const onSearchHandler = (path) => {
             startTransition(() => {
@@ -64,7 +80,7 @@
         }, []);
 
         return (
-            <section className="w-full py-4 sm:px-12 px-5 flex bg-white dark:bg-[#161618] justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center">
+            <section className={"w-full py-4 sm:px-12 px-5 flex justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center" + (scrolled ? "bg-white/10 dark:bg-[#161618]/10 backdrop-blur-sm focus-within:bg-white/10 focus-within:dark:bg-[#161618]/10 focus-within:backdrop-blur-2xl": "bg-white dark:bg-[#161618]")}>
                 <Link href={"/"} className="font-bold text-lg uppercase cursor-pointer flex items-center gap-1" >
                     <Image
                         src={"/sly.svg"}
