@@ -2,7 +2,7 @@
     import Image from "next/image";
     import Link from "next/link";
     import { useRouter, usePathname } from "next/navigation";
-    import { useEffect, useRef, useState, useTransition } from "react";
+    import React, { useEffect, useRef, useState, useTransition } from "react";
 
     export default function NavBar() {
         const searchBox = useRef();
