@@ -3,30 +3,16 @@
     import Link from "next/link";
     import { useRouter, usePathname } from "next/navigation";
     import React, { useEffect, useRef, useState, useTransition } from "react";
+import { MyContext } from "../page";
 
     export default function NavBar() {
+        const { scrolled } = React.useContext(MyContext);
         const searchBox = useRef();
         const pathName = usePathname();
         const [placeholder, setPlaceholder] = useState("CTRL + K");
         const [searchText, setSearchText] = useState(pathName ? `${pathName.slice(1).replace(/%20/g, ' ')}` : "");
         const router = useRouter();
         const [loading, startTransition] = useTransition();
-        const [scrolled, setScrolled] = React.useState(false);
-
-        React.useEffect(() => {
-            const handleScroll = () => {
-                const fullHeight = window.innerHeight;
-                const scrollPosition = window.scrollY;
-                if (scrollPosition > (fullHeight * 0.05)) {
-                    setScrolled(true);
-                } else {
-                    setScrolled(false);
-                }
-            };
-
-            window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll);
-        }, []);
 
         const onSearchHandler = (path) => {
             startTransition(() => {
@@ -35,9 +21,15 @@
         };
 
         const handleShortCut = (e) => {
-            const { ctrlKey, code } = e;
+            const { ctrlKey, code, metaKey } = e;
 
             if (ctrlKey && code === "KeyK") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
+            
+            if (metaKey && code === "KeyK") {
                 e.preventDefault();
                 searchBox.current?.focus();
                 return
@@ -49,13 +41,31 @@
                 return
             }
             
+            if (metaKey && code === "KeyS") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
+            
             if (ctrlKey && code === "KeyL") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
+           
+            if (metaKey && code === "KeyL") {
                 e.preventDefault();
                 searchBox.current?.focus();
                 return
             }
             
             if (ctrlKey && code === "KeyF") {
+                e.preventDefault();
+                searchBox.current?.focus();
+                return
+            }
+            
+            if (metaKey && code === "KeyF") {
                 e.preventDefault();
                 searchBox.current?.focus();
                 return
@@ -80,7 +90,7 @@
         }, []);
 
         return (
-            <section className={"w-full py-4 sm:px-12 px-5 flex justify-between duration-[.5s] border-b border-b-black/10 focus-within:border-b-black/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center" + (scrolled ? "bg-white/10 dark:bg-[#161618]/10 backdrop-blur-sm focus-within:bg-white/10 focus-within:dark:bg-[#161618]/10 focus-within:backdrop-blur-2xl": "bg-white dark:bg-[#161618]")}>
+            <section className={"w-full py-4 sm:px-12 px-5 flex justify-between duration-[.5s] border-b border-b-black/10 dark:border-b-white/10 focus-within:border-b-black/25 focus-within:dark:border-b-white/25 shadow-xl shadow-black/10 focus-within:sticky max-sm:sticky top-0 z-[200] items-center" + " " + (scrolled ? "sticky backdrop-grayscale backdrop-brightness-50 focus-within:backdrop-brightness-100 focus-within:backdrop-grayscale-0 top-0 bg-white/10 dark:bg-[#161618]/10 backdrop-blur-sm focus-within:bg-white/10 focus-within:dark:bg-[#161618]/10 focus-within:backdrop-blur-2xl": "bg-white dark:bg-[#161618]")}>
                 <Link href={"/"} className="font-bold text-lg uppercase cursor-pointer flex items-center gap-1" >
                     <Image
                         src={"/sly.svg"}

@@ -15,6 +15,9 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
+  const [scrolled, setScrolled] = React.useState(false);
+
+  
   const divRef = useRef(null);
   const btnRef = useRef();
   const [popData, setPopData] = useState({
@@ -25,7 +28,30 @@ export default function Home() {
     avg_color: "",
     status: false
   });
+  React.useEffect(() => {
+    const myDiv = divRef.current
 
+    if (!myDiv) return;
+
+    const handleScroll = () => {
+      const fullHeight = myDiv.clientHeight;
+      const scrollPosition = myDiv.scrollTop;
+      
+      if (scrollPosition > (fullHeight * 0.05)) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      console.log({
+        isScrolled: scrollPosition > (fullHeight * 0.05)
+      })
+    };
+
+    myDiv.addEventListener('scroll', handleScroll);
+    return () => myDiv.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   useEffect(() => {
     const divElement = divRef.current;
 
@@ -84,7 +110,7 @@ export default function Home() {
   }
 
   return (
-    <MyContext.Provider value={{ viewPop }}>
+    <MyContext.Provider value={{ viewPop, scrolled }}>
       <main className="w-screen h-screen overflow-auto relative" ref={divRef}>
         <Toaster />
         <NavBar />
@@ -107,7 +133,7 @@ export default function Home() {
           clean={setPopData}
         />
 
-      <div class="fixed sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group z-[90]">
+      <div className="fixed sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group z-[90]">
         Made by <Link href={"https://fabiconcept.online"} className="text-xl group-hover:text-blue-500 font-semibold" target="_blank">@Fabiconcept</Link>
       </div>
       </main>
