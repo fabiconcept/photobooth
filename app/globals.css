@@ -128,3 +128,8 @@ body {
     display: none;
   }  
 }
+
+.filter-ios {
+  backdrop-filter: blur(4px);
+  filter: url(#lensFilter) saturate(120%) brightness(1.15)
+}
