@@ -43,10 +43,6 @@ export default function Home() {
       } else {
         setScrolled(false);
       }
-
-      console.log({
-        isScrolled: scrollPosition > (fullHeight * 0.05)
-      })
     };
 
     myDiv.addEventListener('scroll', handleScroll);

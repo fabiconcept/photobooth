@@ -24,6 +24,18 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
         }
     }, [modalShowing]);
 
+    useEffect(() => {
+        const handleShortCut = (e) => {
+            const { code } = e;
+            
+            if (String(code).toLowerCase() === "escape") setModalShowing(false);
+        }
+        document.addEventListener("keydown", (e) => handleShortCut(e));
+        return (
+            document.removeEventListener("keydown", (e) => handleShortCut(e))
+        );
+    }, []);
+
     const performDownload = () => {
         const promise = downloadHandler({imgAlt, imgSrc});
         toast.promise(promise, {
@@ -37,7 +49,10 @@ export default function PopModal({imgSrc, imgAlt, photographer, avg, photographe
         <div className={`popModal sm:p-[5rem] ${modalShowing ? "in" : "out"}`}>
             <div className="modal">
                 <div className="img relative" style={{background: `${avg}`, color: `${avg}`, backgroundImage: `url(${imgSrc})`}}>    
-                    <span className="absolute top-3 left-3 cursor-pointer w-[30px] h-[30px] grid place-items-center bg-white text-2xl rounded-full z-30 max-w-[20rem] text-ellipsis whitespace-nowrap overflow-hidden hover:scale-105 active:scale-95 active:opacity-50 close hover:text-red-600 border border-black/10 hover:border-red-600/40" onClick={()=>setModalShowing(false)}>
+                    <span 
+                        className="absolute top-3 left-3 cursor-pointer w-[30px] h-[30px] grid place-items-center bg-white text-2xl rounded-full z-30 max-w-[20rem] text-ellipsis whitespace-nowrap overflow-hidden hover:scale-105 active:scale-95 active:opacity-50 close hover:text-red-600 border border-black/10 hover:border-red-600/40" 
+                        onClick={()=>setModalShowing(false)}
+                    >
                         <FaX className="text-sm" />
                     </span>
                     {imgSrc && <Image height={800} width={600} src={imgSrc} alt={imgAlt} className="" priority />}
