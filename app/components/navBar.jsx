@@ -9,6 +9,8 @@ import { MyContext } from "@/lib/hooks/useMyContext";
 export default function NavBar() {
     const ContextValues = React.useContext(MyContext);
 
+    const { scrolled, popData } = ContextValues;
+
     const isMac = useMemo(() => {
         console.log(detectOS() === "macos")
         return detectOS() === "macos"
@@ -27,6 +29,8 @@ export default function NavBar() {
     };
 
     const handleShortCut = (e) => {
+        if (popData.status === true) return;
+        
         const { ctrlKey, code, metaKey } = e;
 
         if (ctrlKey && code === "KeyK") {
@@ -94,8 +98,6 @@ export default function NavBar() {
             document.removeEventListener("keydown", (e) => handleShortCut(e))
         );
     }, []);
-
-    const { scrolled } = ContextValues;
 
     return (
         <header className="sticky top-0 z-50">

@@ -106,7 +106,7 @@ export default function Home() {
   }
 
   return (
-    <MyContext.Provider value={{ viewPop, scrolled }}>
+    <MyContext.Provider value={{ viewPop, scrolled, popData }}>
       <main className={"w-screen h-screen overflow-y-auto overflow-x-hidden relative"} ref={divRef}>
         <Toaster />
         <NavBar />

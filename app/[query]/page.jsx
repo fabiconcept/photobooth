@@ -87,7 +87,7 @@ export default function SearchResultsPage({ params: { query } }) {
         });
     }
     return (
-        <MyContext.Provider value={{ viewPop, scrolled }}>
+        <MyContext.Provider value={{ viewPop, scrolled, popData }}>
             <searchContext.Provider value={{ viewPop }}>
                 <main className="w-screen h-screen overflow-y-auto overflow-x-hidden" ref={divRef}>
                     <NavBar />
