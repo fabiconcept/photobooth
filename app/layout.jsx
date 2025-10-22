@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {children}
         <div
-          className="fixed me sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group z-[90] peer"
+          className="fixed me cursor-pointer sm:bottom-10 bottom-5 sm:right-10 right-5 opacity-30 hover:opacity-100 group z-[90] peer"
         >
           Made by <Link href={"https://fabiconcept.online"} className="text-xl group-hover:text-blue-500 font-semibold" target="_blank">@Fabiconcept</Link>
         </div>
