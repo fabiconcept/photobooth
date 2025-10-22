@@ -133,3 +133,8 @@ body {
   backdrop-filter: blur(4px);
   filter: url(#lensFilter) saturate(120%) brightness(1.15)
 }
+
+body:has(.me:hover) main {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
